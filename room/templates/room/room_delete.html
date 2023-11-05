@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% block title %}Delete | {% endblock %}
+
+{% block content %}
+<style>
+.delete-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center the text */
+.text-center {
+  text-align: center;
+}
+
+/* Styling for confirmation text */
+.confirm-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+</style>
+    <h1 class="text-center">Delete channel</h1>
+    <form method="post" class="delete-form">
+      {% csrf_token %}
+      <p class="confirm-text">"{{ object.name }}" postni o'chiraymi.?</p>
+      <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+{% endblock content %}
