@@ -95,5 +95,6 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-
+CSRF_COOKIE_HTTPONLY = False  # CSRF token cookie orqali ko'rinishi kerak
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_COOKIE_SECURE = True  # Faqat HTTPS orqali token yuborish
