@@ -73,13 +73,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 POSTGRES_LOCALLY = False
 
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
-    DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
-    }
+    DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
 
 
 AUTH_PASSWORD_VALIDATORS = [
