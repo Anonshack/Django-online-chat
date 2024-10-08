@@ -1,7 +1,4 @@
-import os
 from pathlib import Path
-
-import dj_database_url
 from environs import Env
 env = Env()
 env.read_env()
@@ -31,7 +28,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,11 +60,8 @@ ASGI_APPLICATION = 'djangochat.asgi.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
 }
 
 DATABASES = {
@@ -77,13 +70,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
-POSTGRES_LOCALLY = False
-
-if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
-    DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
