@@ -1,4 +1,7 @@
+import os
 from pathlib import Path
+
+import dj_database_url
 from environs import Env
 env = Env()
 env.read_env()
@@ -70,6 +73,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
+POSTGRES_LOCALLY = False
+
+if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+    }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
