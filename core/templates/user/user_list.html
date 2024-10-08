@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+{% block title %}Users list page | {% endblock %}
+
+{% block content %}
+
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        #user-list {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: blue;
+            font-size: 23px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div id="user-list">
+        <h1>Users List</h1>
+        <ul>
+            {% for user in object_list %}
+                {% if user.is_superuser %}
+                    <li><a href="#" style="color: black">Welcome, Admin</a></li>
+                {% else %}
+                    <li><a href="#">{{ user.id }}: {{ user.username }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+{% endblock %}

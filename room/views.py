@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, DeleteView, ListView
 
 from .models import Room, Message
 
@@ -29,3 +30,5 @@ class ChatDeleteView(DeleteView):
     model = Room
     template_name = 'room/room_delete.html'
     success_url = reverse_lazy('rooms')
+
+
